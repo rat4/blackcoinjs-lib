@@ -42,6 +42,20 @@ var networks = {
     feePerKb: 100000, // https://github.com/litecoin-project/litecoin/blob/v0.8.7.2/src/main.cpp#L56
     estimateFee: estimateFee('litecoin')
   },
+  blackcoin: {
+    magicPrefix: '\x19BlackCoin Signed Message:\n',
+    bip32: {
+      public: 0x02cfbede,
+      private: 0x02cfbf60
+    },
+    pubKeyHash: 0x19,
+    scriptHash: 0x55,
+    wif: 0x99,
+    dustThreshold: 5460, // https://github.com/litecoin-project/litecoin/blob/v0.8.7.2/src/main.cpp#L360-L365
+    dustSoftThreshold: 5460, // https://github.com/litecoin-project/litecoin/blob/v0.8.7.2/src/main.h#L53
+    feePerKb: 10000, // https://github.com/litecoin-project/litecoin/blob/v0.8.7.2/src/main.cpp#L56
+    estimateFee: estimateFee('blackcoin')
+  },
   dogecoin: {
     magicPrefix: '\x19Dogecoin Signed Message:\n',
     bip32: {

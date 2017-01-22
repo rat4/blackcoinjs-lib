@@ -11,6 +11,7 @@ var Script = require('./script')
 
 function Transaction () {
   this.version = 1
+  this.nTime = Math.round(new Date().getTime() / 1000);
   this.locktime = 0
   this.ins = []
   this.outs = []
@@ -57,7 +58,7 @@ Transaction.fromBuffer = function (buffer, __disableAssert) {
 
   var tx = new Transaction()
   tx.version = readUInt32()
-
+  tx.nTime = readUInt32()
   var vinLen = readVarInt()
   for (var i = 0; i < vinLen; ++i) {
     var hash = readSlice(32)
@@ -179,6 +180,7 @@ Transaction.prototype.addOutput = function (scriptPubKey, value) {
 Transaction.prototype.clone = function () {
   var newTx = new Transaction()
   newTx.version = this.version
+  newTx.nTime = this.nTime
   newTx.locktime = this.locktime
 
   newTx.ins = this.ins.map(function (txIn) {
@@ -300,6 +302,7 @@ Transaction.prototype.toBuffer = function () {
   }
 
   writeUInt32(this.version)
+  writeUInt32(this.nTime)
   writeVarInt(this.ins.length)
 
   this.ins.forEach(function (txIn) {
