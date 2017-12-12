@@ -11,7 +11,7 @@ var Script = require('./script')
 
 function Transaction () {
   this.version = 1
-  this.nTime = Math.round(new Date().getTime() / 1000);
+  this.nTime = Math.floor(new Date().getTime() / 1000)
   this.locktime = 0
   this.ins = []
   this.outs = []
@@ -273,7 +273,7 @@ Transaction.prototype.toBuffer = function () {
   }
 
   var buffer = new Buffer(
-    8 +
+    12 +
     bufferutils.varIntSize(this.ins.length) +
     bufferutils.varIntSize(this.outs.length) +
     this.ins.reduce(function (sum, input) { return sum + 40 + scriptSize(input.script) }, 0) +
