@@ -24,6 +24,17 @@ module.exports = {
     wif: 0xef,
     dustThreshold: 546
   },
+  blackcoin: {
+    magicPrefix: '\x1ABlackCoin Signed Message:\n',
+    bip32: {
+      public: 0x0488b21e,
+      private: 0x0488ade4
+    },
+    pubKeyHash: 0x19,
+    scriptHash: 0x55,
+    wif: 0x99,
+    dustThreshold: 10000
+  },
   litecoin: {
     messagePrefix: '\x19Litecoin Signed Message:\n',
     bip32: {
